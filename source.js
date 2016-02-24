@@ -5,8 +5,8 @@ import del from 'del';
 import gutil from 'gulp-util';
 import rename from 'gulp-rename';
 
-const { exec, mkdir } = sh;
-const { remotes, database } = require(`${__dirname}/env.json`);
+const { exec, mkdir, pwd } = sh;
+const { remotes, database } = require(`${pwd()}/env.json`);
 
 const knownOptions = {
   'default': {
