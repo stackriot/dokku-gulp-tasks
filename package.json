@@ -1,6 +1,6 @@
 {
   "name": "dokku-gulp-tasks",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "",
   "main": "index.js",
   "author": "Angus Fretwell",
@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/angusfretwell/dokku-gulp-tasks#readme",
   "scripts": {
-    "prepublish": "babel source.js -o index.js"
+    "prepublish": "babel --presets es2015 source.js -o index.js"
   },
   "dependencies": {
     "del": "^2.2.0",
@@ -23,5 +23,8 @@
     "gulp-util": "^3.0.7",
     "minimist": "^1.2.0",
     "shelljs": "^0.6.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.5.0"
   }
 }
