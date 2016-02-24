@@ -6,7 +6,7 @@ import gutil from 'gulp-util';
 import rename from 'gulp-rename';
 
 const { exec, mkdir } = sh;
-const { remotes, database } = require('./env.json');
+const { remotes, database } = require(`${__dirname}/env.json`);
 
 const knownOptions = {
   'default': {
