@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/angusfretwell/dokku-gulp-tasks#readme",
   "scripts": {
-    "prepublish": "babel source.js -o index.js",
+    "prepublish": "babel source.js -o index.js"
   },
   "dependencies": {
     "del": "^2.2.0",
