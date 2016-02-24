@@ -13,6 +13,9 @@
     "url": "https://github.com/angusfretwell/dokku-gulp-tasks/issues"
   },
   "homepage": "https://github.com/angusfretwell/dokku-gulp-tasks#readme",
+  "scripts": {
+    "prepublish": "babel source.js -o index.js",
+  },
   "dependencies": {
     "del": "^2.2.0",
     "gulp": "^3.9.1",
