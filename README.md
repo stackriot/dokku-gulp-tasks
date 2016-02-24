@@ -42,6 +42,11 @@ gulp dokku:remote [--env <env>]
 
 This task creates a git remote for your Dokku server. This task is run automatically by `dokku:init`, but is useful for adding a remote for an app that was initialized by another developer.
 
+```sh
+gulp dokku:remote [--env <env>]
+```
+
+This task deploys your application by pushing the current branch to the Dokku server.
 
 ### Databases
 

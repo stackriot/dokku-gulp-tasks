@@ -42,6 +42,10 @@ export default function (gulp) {
     exec(`git remote add ${env.branch} dokku@${hostname}:${slug}`);
   });
 
+  gulp.task('dokku:deploy', () => {
+    exec(`git push ${env.branch} HEAD:master`);
+  });
+
   gulp.task('dokku:init', ['dokku:remote'], () => {
     exec(`${ssh} apps:create ${slug}`);
     exec(`${ssh} ${databaseType}:create ${slug}`);
