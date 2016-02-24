@@ -1,6 +1,6 @@
 {
   "name": "dokku-gulp-tasks",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "",
   "main": "index.js",
   "author": "Angus Fretwell",
