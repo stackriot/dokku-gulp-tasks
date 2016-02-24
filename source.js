@@ -1,4 +1,4 @@
-import minimist from 'minimist'; 
+import minimist from 'minimist';
 import sh from 'shelljs';
 import del from 'del';
 import gutil from 'gulp-util';
@@ -26,7 +26,7 @@ if (!remotes[options.env]) {
   process.exit(1);
 }
 
-const { hostname, slug } = remotes[options.env].hostname;
+const { hostname, slug } = remotes[options.env];
 const ssh = `ssh -o StrictHostKeyChecking=no dokku@${hostname}`;
 
 export default function(gulp) {
