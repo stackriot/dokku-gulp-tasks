@@ -1,10 +1,10 @@
 # Dokku gulp tasks
 
-A few opionionated gulp.js tasks for speeding-up deployment with Dokku.
+A few opinionated gulp.js tasks for speeding-up deployment with Dokku.
 
 These tasks assume the following about your environment:
 
-* Your application uses MySQL 
+* Your application uses MySQL
 * You're running Dokku v0.4.14 or later, and using the [official MySQL plugin](https://github.com/dokku/dokku-mysql)
 * You have SSH keys set up for the `dokku` user
 * You're running in a Vagrant machine, with the root of your application shared at `/vagrant`
@@ -49,7 +49,7 @@ This task creates a git remote for your Dokku server. This task is run automatic
 gulp db:dump-local [--env <env>]
 ```
 
-Dumps the database from your local Vagrant machine to the `.tmp` directory. 
+Dumps the database from your local Vagrant machine to the `.tmp` directory.
 
 ```sh
 gulp db:dump-remote [--env <env>] [--mariadb]
