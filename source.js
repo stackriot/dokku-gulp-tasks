@@ -8,7 +8,7 @@ const { exec, mkdir, pwd } = sh;
 const { remotes, database } = require(`${pwd()}/env.json`);
 
 const knownOptions = {
-  'default': {
+  default: {
     env: process.env.NODE_ENV || Object.keys(remotes)[0],
   },
 };
@@ -22,14 +22,14 @@ const env = {
 };
 
 if (!remotes[options.env]) {
-  gutil.log(`You must provide a valid remote name.`).beep();
+  gutil.log('You must provide a valid remote name.').beep();
   process.exit(1);
 }
 
 const { hostname, slug } = remotes[options.env];
 const ssh = `ssh -o StrictHostKeyChecking=no dokku@${hostname}`;
 
-export default function(gulp) {
+export default function (gulp) {
   gulp.task('dokku', () => {
     exec(`${ssh} ${options.command}`);
   });
@@ -74,12 +74,12 @@ export default function(gulp) {
   gulp.task('db:backup', [
     'db:dump-local',
     'db:dump-remote',
-  ], () => {
-    return gulp.src([
+  ], () =>
+    gulp.src([
       '.tmp/local.sql',
       `.tmp/${env.sqlFile}`,
     ])
     .pipe(rename({ suffix: `/${new Date().toISOString()}` }))
-    .pipe(gulp.dest('databases'));
-  });
+    .pipe(gulp.dest('databases'))
+  );
 }
