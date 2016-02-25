@@ -29,7 +29,7 @@ if (!remotes[options.env]) {
 const { hostname, slug } = remotes[options.env];
 const ssh = `ssh -o StrictHostKeyChecking=no dokku@${hostname}`;
 
-export default function (gulp) {
+export default function setup(gulp) {
   gulp.task('dokku', () => {
     exec(`${ssh} ${options.command}`);
   });
