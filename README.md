@@ -13,7 +13,13 @@ These tasks assume the following about your environment:
 ## Getting started
 
 1. Install the package to your project with `npm install --save-dev dokku-gulp-tasks`
-2. Require the package in your `gulpfile.js`, and pass it an instance of gulp: `require('dokku-gulp-tasks')(gulp);`
+2. Require the package in your `gulpfile.js`, and pass it an instance of gulp: 
+
+  ```js
+  import deployTasks from 'dokku-gulp-tasks';
+  deployTasks(gulp);
+  ```
+  
 3. Create a `env.json` ([see example](https://github.com/angusfretwell/dokku-gulp-tasks/blob/master/env.json.example)) in the root of your project to describe your local database credentials, and remote Dokku server(s)
 
 ## Usage
