@@ -12,7 +12,7 @@ These tasks assume the following about your environment:
 
 ## Getting started
 
-1. Install the package to your project with `npm install --save-dev dokku-gulp-tasks`
+1. Install the package to your project with `npm install --save dokku-gulp-tasks`
 2. Require the package in your `gulpfile.js`, and pass it an instance of gulp: 
 
   ```js
