@@ -5,7 +5,13 @@ import gutil from 'gulp-util';
 import rename from 'gulp-rename';
 
 const { exec, mkdir, pwd } = sh;
-const { remotes, database } = require(`${pwd()}/env.json`);
+
+const {
+  remotes,
+  database,
+  isVagrantContext = false,
+  sharedDirectory = '/vagrant/.tmp'
+} = require(`${pwd()}/env.json`);
 
 const knownOptions = {
   default: {
@@ -54,8 +60,15 @@ export default function setup(gulp) {
 
   gulp.task('db:dump-local', ['dokku:clean'], () => {
     const databaseConnection = `-u${database.username} -p${database.password} ${database.name}`;
+    const command = `mysqldump ${databaseConnection} > ${sharedDirectory}/local.sql`;
+
     mkdir('-p', '.tmp');
-    exec(`vagrant ssh --command "mysqldump ${databaseConnection} > /vagrant/.tmp/local.sql"`);
+
+    if (isVagrantContext) {
+      exec(`vagrant ssh --command "${command}"`);
+    } else {
+      exec(`${command}`);
+    }
   });
 
   gulp.task('db:dump-remote', ['dokku:clean'], () => {
@@ -72,7 +85,13 @@ export default function setup(gulp) {
 
   gulp.task('db:pull', ['db:dump-remote'], () => {
     const databaseConnection = `-u${database.username} -p${database.password} ${database.name}`;
-    exec(`vagrant ssh --command "mysql ${databaseConnection} < /vagrant/.tmp/${env.sqlFile}"`);
+    const command = `mysql ${databaseConnection} < ${sharedDirectory}/${env.sqlFile}`;
+
+    if (isVagrantContext) {
+      exec(`vagrant ssh --command "${command}"`);
+    } else {
+      exec(`${command$}`);
+    }
   });
 
   gulp.task('db:backup', [
