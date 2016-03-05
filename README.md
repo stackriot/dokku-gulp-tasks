@@ -12,15 +12,19 @@ These tasks assume the following about your environment:
 
 ## Getting started
 
-1. Install the package to your project with `npm install --save-dev dokku-gulp-tasks`
+1. Install the package to your project with `npm install --save dokku-gulp-tasks`
 2. Require the package in your `gulpfile.js`, and pass it an instance of gulp: 
 
   ```js
+  // ES2015-style
   import deployTasks from 'dokku-gulp-tasks';
   deployTasks(gulp);
+  
+  // CommonJS-style
+  require('dokku-gulp-tasks')(gulp);
   ```
   
-3. Create a `env.json` ([see example](https://github.com/angusfretwell/dokku-gulp-tasks/blob/master/env.json.example)) in the root of your project to describe your local database credentials, and remote Dokku server(s)
+3. Create a `env.json` ([see example](https://github.com/angusfretwell/dokku-gulp-tasks/blob/master/env.json.example)) in the root of your project to describe the local database credentials, and remote Dokku server(s)
 
 ## Usage
 
@@ -30,13 +34,13 @@ gulp dokku [--command <command>] [--env <env>]
 
 ### Deployment
 
-The `dokku` task allows you to run arbitrary Dokku commands, specified in the `command` argument (for example, `gulp dokku apps` will list the apps deployed to the server). If you have multiple Dokku servers specified in `env.json`, you can specify an environment by key with the `env` argument.
+The `dokku` task allows you to run arbitrary Dokku commands, specified in the `command` argument (for example, `gulp dokku apps` will list the apps deployed to the server). If  you have multiple Dokku servers specified in `env.json`, you can specify an environment by key with the `env` argument.
 
 ```sh
 gulp dokku:init [--env <env>]
 ```
 
-This task readies your Dokku server for deployment of your app by performing the following tasks:
+Readies the Dokku server for deployment of the app by performing the following tasks:
 
 * Creates a new app
 * Creates a MySQL container
@@ -46,13 +50,13 @@ This task readies your Dokku server for deployment of your app by performing the
 gulp dokku:remote [--env <env>]
 ```
 
-This task creates a git remote for your Dokku server. This task is run automatically by `dokku:init`, but is useful for adding a remote for an app that was initialized by another developer.
+Creates a git remote for the Dokku server. This task is run automatically by `dokku:init`, but is useful for adding a remote for an app that was initialized by another developer.
 
 ```sh
 gulp dokku:remote [--env <env>]
 ```
 
-This task deploys your application by pushing the current branch to the Dokku server.
+Deploys the application by pushing the current branch to the Dokku server.
 
 ### Databases
 
@@ -60,7 +64,7 @@ This task deploys your application by pushing the current branch to the Dokku se
 gulp db:dump-local [--env <env>]
 ```
 
-Dumps the database from your local Vagrant machine to the `.tmp` directory.
+Dumps the database from the local Vagrant machine to the `.tmp` directory.
 
 ```sh
 gulp db:dump-remote [--env <env>] [--mariadb]
@@ -72,16 +76,16 @@ Dumps the database of the remote Dokku app to the `.tmp` directory. The `mariadb
 gulp db:push [--env <env>] [--mariadb]
 ```
 
-Pushes the database from your local Vagrant machine to a remote Dokku app.
+Pushes the database from the local Vagrant machine to a remote Dokku app.
 
 ```sh
 gulp db:pull [--env <env>] [--mariadb]
 ```
 
-Pulls the database of the remote Dokku app to your local Vagrant machine.
+Pulls the database of the remote Dokku app to the local Vagrant machine.
 
 ```sh
 gulp db:backup [--env <env>] [--mariadb]
 ```
 
-Creates timestamped dumps of the databases from both your local Vagrant machine, and the remote Dokku app to the `/databases` directory.
+Creates timestamped dumps of the databases from both the local Vagrant machine, and the remote Dokku app to the `/databases` directory.
