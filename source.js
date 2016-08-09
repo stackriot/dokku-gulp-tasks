@@ -65,9 +65,9 @@ export default function setup(gulp) {
     mkdir('-p', '.tmp');
 
     if (isVagrantContext) {
-      exec(`vagrant ssh --command "${command}"`);
-    } else {
       exec(`${command}`);
+    } else {
+      exec(`vagrant ssh --command "${command}"`);
     }
   });
 
@@ -88,9 +88,9 @@ export default function setup(gulp) {
     const command = `mysql ${databaseConnection} < ${sharedDirectory}/${env.sqlFile}`;
 
     if (isVagrantContext) {
-      exec(`vagrant ssh --command "${command}"`);
-    } else {
       exec(`${command$}`);
+    } else {
+      exec(`vagrant ssh --command "${command}"`);
     }
   });
 
