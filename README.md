@@ -28,7 +28,7 @@ These tasks assume the following about your environment:
 
   You can override the shared directory with the `sharedDirectory` parameter:
 
-  ```
+  ```json
   // env.json
   {
     "sharedDirectory": "/home/vagrant"
@@ -37,7 +37,7 @@ These tasks assume the following about your environment:
 
   You can force the scripts to expect to be run in the context of a Vagrant machine (versus the host machine) by setting `isVagrantContext`:
 
-  ```
+  ```json
   // env.json
   {
     "isVagrantContext": true
