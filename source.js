@@ -9,8 +9,8 @@ const { exec, mkdir, pwd } = sh;
 const {
   remotes,
   database,
-  isVagrantContext = false,
-  sharedDirectory = '/vagrant/.tmp'
+  isVagrantContext = exec('whoami') === 'vagrant',
+  sharedDirectory = '/vagrant',
 } = require(`${pwd()}/env.json`);
 
 const knownOptions = {
@@ -60,7 +60,7 @@ export default function setup(gulp) {
 
   gulp.task('db:dump-local', ['dokku:clean'], () => {
     const databaseConnection = `-u${database.username} -p${database.password} ${database.name}`;
-    const command = `mysqldump ${databaseConnection} > ${sharedDirectory}/local.sql`;
+    const command = `mysqldump ${databaseConnection} > ${sharedDirectory}/.tmp/local.sql`;
 
     mkdir('-p', '.tmp');
 
@@ -85,10 +85,10 @@ export default function setup(gulp) {
 
   gulp.task('db:pull', ['db:dump-remote'], () => {
     const databaseConnection = `-u${database.username} -p${database.password} ${database.name}`;
-    const command = `mysql ${databaseConnection} < ${sharedDirectory}/${env.sqlFile}`;
+    const command = `mysql ${databaseConnection} < ${sharedDirectory}/.tmp/${env.sqlFile}`;
 
     if (isVagrantContext) {
-      exec(`${command$}`);
+      exec(`${command}`);
     } else {
       exec(`vagrant ssh --command "${command}"`);
     }
