@@ -9,7 +9,7 @@ const { exec, mkdir, pwd } = sh;
 const {
   remotes,
   database,
-  isVagrantContext = exec('whoami') === 'vagrant',
+  isVagrantContext = process.env.USER === 'vagrant',
   sharedDirectory = '/vagrant',
 } = require(`${pwd()}/env.json`);
 
