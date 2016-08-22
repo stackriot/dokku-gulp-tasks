@@ -13,18 +13,38 @@ These tasks assume the following about your environment:
 ## Getting started
 
 1. Install the package to your project with `npm install --save dokku-gulp-tasks`
-2. Require the package in your `gulpfile.js`, and pass it an instance of gulp: 
+2. Require the package in your `gulpfile.js`, and pass it an instance of gulp:
 
   ```js
   // ES2015-style
   import deployTasks from 'dokku-gulp-tasks';
   deployTasks(gulp);
-  
+
   // CommonJS-style
   require('dokku-gulp-tasks')(gulp);
   ```
-  
-3. Create a `env.json` ([see example](https://github.com/angusfretwell/dokku-gulp-tasks/blob/master/env.json.example)) in the root of your project to describe the local database credentials, and remote Dokku server(s)
+
+3. Create a `env.json` ([see example](https://github.com/angusfretwell/dokku-gulp-tasks/blob/master/env.json.example)) in the root of your project to describe the local database credentials, and remote Dokku server(s).
+
+  You can override the shared directory with the `sharedDirectory` parameter:
+
+  ```
+  // env.json
+  {
+    "sharedDirectory": "/home/vagrant"
+  }
+  ```
+
+  You can force the scripts to expect to be run in the context of a Vagrant machine (versus the host machine) by setting `isVagrantContext`:
+
+  ```
+  // env.json
+  {
+    "isVagrantContext": true
+  }
+  ```
+
+  By default, the script will check if the user who invoked it matches `vagrant` to determine the context.
 
 ## Usage
 
